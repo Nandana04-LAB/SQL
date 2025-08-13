@@ -1,0 +1,39 @@
+-- Table 1: Student Information
+CREATE TABLE StudentDetails (
+    StudentID INT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT,
+    Gender VARCHAR(50)
+);
+
+-- Table 2: Student Marks
+CREATE TABLE StudentScores (
+    StudentID INT,
+    Subject VARCHAR(50),
+    Marks INT
+);
+
+-- Insert data into StudentDetails
+INSERT INTO StudentDetails VALUES
+(2001, 'Alex', 'Johnson', 20, 'Male'),
+(2002, 'Sophie', 'Williams', 19, 'Female'),
+(2003, 'Daniel', 'Smith', 21, 'Male'),
+(2004, 'Emily', 'Brown', 20, 'Female'),
+(2005, 'Liam', 'Davis', 22, 'Male'),
+(2006, 'Olivia', 'Taylor', 19, 'Female'),
+(2007, 'Ethan', 'Moore', 21, 'Male'),
+(2008, 'Ava', 'Anderson', 20, 'Female'),
+(2009, 'Mason', 'Thomas', 22, 'Male');
+
+-- Insert data into StudentScores
+INSERT INTO StudentScores VALUES
+(2001, 'Mathematics', 85),
+(2002, 'English', 78),
+(2003, 'Physics', 92),
+(2004, 'Chemistry', 88),
+(2005, 'Biology', 80),
+(2006, 'Mathematics', 90),
+(2007, 'English', 76),
+(2008, 'Physics', 89),
+(2009, 'Chemistry', 84);
