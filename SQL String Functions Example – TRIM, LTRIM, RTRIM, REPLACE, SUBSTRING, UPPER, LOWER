@@ -1,0 +1,54 @@
+/*
+Today's Topic: String Functions - TRIM, LTRIM, RTRIM, REPLACE, SUBSTRING, UPPER, LOWER
+*/
+
+-- Drop table if it already exists
+-- DROP TABLE StudentErrors;
+
+-- Create table
+CREATE TABLE StudentErrors (
+    StudentID VARCHAR(50),
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50)
+);
+
+-- Insert data with intentional formatting issues
+INSERT INTO StudentErrors VALUES
+('2001  ', 'Alexis', 'Johnsen'),
+('  2002', 'Sophie', 'Williamson'),
+('2005', 'DAniel', 'Smith - Expelled');
+
+-- View table
+SELECT *
+FROM StudentErrors;
+
+-- Using TRIM, LTRIM, RTRIM
+SELECT StudentID, TRIM(StudentID) AS ID_TRIM
+FROM StudentErrors;
+
+SELECT StudentID, RTRIM(StudentID) AS ID_RTRIM
+FROM StudentErrors;
+
+SELECT StudentID, LTRIM(StudentID) AS ID_LTRIM
+FROM StudentErrors;
+
+-- Using REPLACE
+SELECT LastName, REPLACE(LastName, '- Expelled', '') AS LastNameFixed
+FROM StudentErrors;
+
+-- Using SUBSTRING with another table
+-- Assuming StudentDetails table already exists
+SELECT SUBSTRING(err.FirstName, 1, 3), SUBSTRING(det.FirstName, 1, 3),
+       SUBSTRING(err.LastName, 1, 3), SUBSTRING(det.LastName, 1, 3)
+FROM StudentErrors err
+JOIN StudentDetails det
+    ON SUBSTRING(err.FirstName, 1, 3) = SUBSTRING(det.FirstName, 1, 3)
+   AND SUBSTRING(err.LastName, 1, 3) = SUBSTRING(det.LastName, 1, 3);
+
+-- Using LOWER
+SELECT FirstName, LOWER(FirstName) AS FirstNameLower
+FROM StudentErrors;
+
+-- Using UPPER
+SELECT FirstName, UPPER(FirstName) AS FirstNameUpper
+FROM StudentErrors;
