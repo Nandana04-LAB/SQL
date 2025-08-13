@@ -1,0 +1,42 @@
+/*
+Today's Topic: Subqueries (in the SELECT, FROM, and WHERE Statements)
+*/
+
+-- View StudentScores table
+SELECT StudentID, Subject, Marks
+FROM StudentScores;
+
+-- Subquery in SELECT
+SELECT StudentID, Marks, 
+       (SELECT AVG(Marks) FROM StudentScores) AS AllAvgMarks
+FROM StudentScores;
+
+-- Using Partition By (Window Function) instead of Subquery
+SELECT StudentID, Marks, 
+       AVG(Marks) OVER () AS AllAvgMarks
+FROM StudentScores;
+
+-- Why GROUP BY doesn't work in the same way
+SELECT StudentID, Marks, 
+       AVG(Marks) AS AllAvgMarks
+FROM StudentScores
+GROUP BY StudentID, Marks
+ORDER BY StudentID;
+
+-- Subquery in FROM
+SELECT a.StudentID, a.AllAvgMarks
+FROM (
+        SELECT StudentID, Marks, 
+               AVG(Marks) OVER () AS AllAvgMarks
+        FROM StudentScores
+     ) a
+ORDER BY a.StudentID;
+
+-- Subquery in WHERE
+SELECT StudentID, Subject, Marks
+FROM StudentScores
+WHERE StudentID IN (
+    SELECT StudentID
+    FROM StudentDetails
+    WHERE Age > 20
+);
